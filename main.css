@@ -55,7 +55,7 @@ nav.menu ul li a:hover  {
 header.hero {
     height: 350px;
     background-color: #b4c6f0;
-    background-image: url('/bg.png');
+    background-image: url('bg.png');
     background-size: 400px;
     background-repeat: no-repeat;
     background-position: center bottom;
@@ -104,15 +104,6 @@ header.hero h2 {
     max-width: 340px;
     text-align: justify;
     margin: 20px;
-}
-
-img {
-    display: block;         
-    margin: 0 auto;       
-    width: 100px;           
-    height: 100px; 
-    margin: 16px auto 0;      
-    object-fit: cover;      
 }
 
 
