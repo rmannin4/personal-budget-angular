@@ -55,7 +55,7 @@ nav.menu ul li a:hover  {
 header.hero {
     height: 350px;
     background-color: #b4c6f0;
-    background-image: url('/pb/bg.png');
+    background-image: url('pb/bg.png');
     background-size: 400px;
     background-repeat: no-repeat;
     background-position: center bottom;
