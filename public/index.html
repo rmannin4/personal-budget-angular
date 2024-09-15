@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- This is an SEO Change -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This is an SEO Change -->
+    <meta name="description" content="Manage your personal budget effectively with our free budget management app. Stay on track with alerts and real data insights.">
+    <!-- This is an SEO Change -->
+    <title>Personal Budget - Learn the various ways to budget more effectively</title>
+    <link rel="stylesheet" href="/public/reset.css">
+    <link rel="stylesheet" href="/public/main.css">
+<!-- This is an A11y Change -->
+    <a href="#main" class="skip">Skip to main content</a>
+</head>
+<body>
+    
+    
+<!-- This is a Semantic HTML Change -->
+  <!-- This is an A11y Change -->
+    <nav class="menu" aria-label="Primary Navigation">
+        <ul>
+            <li><a href="/">Homepage</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/login.html">Login</a></li>
+            <!-- This is an A11y Change -->
+            <li><a href="https://google.com" aria-label="Visit Google for more information">Google</a></li>
+        </ul>
+    </nav>
+
+<!-- This is a Semantic HTML Change -->
+    <header class="hero">
+        <h1>Personal Budget</h1>
+        <h2>A personal-budget management app</h2>
+    </header>
+ <!-- This is an A11y Change -->
+<!-- This is a Semantic HTML Change -->
+    <main id="main" class="container center">
+<!-- This is a Semantic HTML Change -->
+        <section class="page-area">
+<!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Stay on track</h1>
+                <p>
+                    Do you know where you are spending your money? If you really stop to track it down,
+                    you would get surprised! Proper budget management depends on real data... and this
+                    app will help you with that!
+                </p>
+            </article>
+    <!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Alerts</h1>
+                <p>
+                    What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
+                </p>
+            </article>
+    <!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Results</h1>
+                <p>
+                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
+                    Also, they to live happier lives... since they expend without guilt or fear... 
+                    because they know it is all good and accounted for.
+                </p>
+            </article>
+    <!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Free</h1>
+                <p>
+                    This app is free!!! And you are the only one holding your data!
+                </p>
+            </article>
+    <!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Stay on track</h1>
+                <p>
+                    Do you know where you are spending your money? If you really stop to track it down,
+                    you would get surprised! Proper budget management depends on real data... and this
+                    app will help you with that!
+                </p>
+            </article>
+    <!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Alerts</h1>
+                <p>
+                    What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
+                </p>
+            </article>
+    <!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Results</h1>
+                <p>
+                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
+                    Also, they to live happier lives... since they expend without guilt or fear... 
+                    because they know it is all good and accounted for.
+                </p>
+            </article>
+    <!-- This is a Semantic HTML Change -->
+            <article class="text-box">
+                <h1>Chart</h1>
+                <p>
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </p>
+            </article>
+
+        </section>
+
+    </main>
+<!-- This is a Semantic HTML Change -->
+ <!-- This is an A11y Change -->
+    <footer class="bottom" aria-label="Site footer">
+        <div class="center">
+            All rights reserved &copy; Fabio Nolasco
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+                var dataSource = {
+              datasets: [
+                {
+                    data: [],
+                    backgroundColor: [
+                        '#ffcd56',
+                        '#ff6384',
+                        '#36a2eb',
+                        '#fd6b19',
+                    ],
+                }
+              ],
+              labels: [ ]      
+                };
+            function createChart() {
+                var ctx = document.getElementById("myChart").getContext("2d");
+                var myPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: dataSource
+                })
+            }
+
+            function getBudget () {
+                axios.get('/budget')
+                .then(function (res) {
+                    console.log(res.data);
+                    for (var i= 0; i < res.data.myBudget.length; i++) {
+                        dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
+                        dataSource.labels[i] = res.data.myBudget[i].title;
+                    }
+                    createChart();
+                });
+            }
+           getBudget(); 
+
+    </script>
+</body>
+</html>
