@@ -8,8 +8,8 @@
     <meta name="description" content="Manage your personal budget effectively with our free budget management app. Stay on track with alerts and real data insights.">
     <!-- This is an SEO Change -->
     <title>Personal Budget - Learn the various ways to budget more effectively</title>
-    <link rel="stylesheet" href="/public/reset.css">
-    <link rel="stylesheet" href="/public/main.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="main.css">
 <!-- This is an A11y Change -->
     <a href="#main" class="skip">Skip to main content</a>
 </head>
@@ -147,10 +147,11 @@
                         dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
                         dataSource.labels[i] = res.data.myBudget[i].title;
                     }
-                    createChart();
+                    
                 });
             }
            getBudget(); 
+           createChart();
 
     </script>
 </body>
