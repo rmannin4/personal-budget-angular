@@ -98,32 +98,32 @@
     <!-- This is a Semantic HTML Change -->
             <article class="text-box">
                 <h1>Chart</h1>
-                <p>
                     <canvas id="myChart" width="400" height="400"></canvas>
-                </p>
             </article>
 
         </section>
 
     </main>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    
     <script>
                 var dataSource = {
+                    labels: [],  
               datasets: [
                 {
-                    data: [ ],
+                    data: [],
                     backgroundColor: [
                         '#ffcd56',
                         '#ff6384',
                         '#36a2eb',
-                        '#fd6b19',
+                        '#8a89a6', 
                     ],
                 }
               ],
-              labels: [ ]      
+    
                 };
             
             function createChart() {
@@ -135,16 +135,18 @@
             }
 
             function getBudget () {
-                axios.get('./budget.json')
+                axios.get('http://localhost:3000/budget')
                 .then(function (res) {
                     console.log(res.data);
                     for (var i= 0; i < res.data.myBudget.length; i++) {
                         dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
                         dataSource.labels[i] = res.data.myBudget[i].title;
+                        
                     }
                     createChart();
-                    
+
                 });
+
             }
             getBudget();
 
@@ -221,7 +223,7 @@ var outerArc = d3.svg.arc()
 var key = function(d) { return d.data.title; };
 
 
-d3.json("/budget.json", function(data) {
+d3.json("/budget", function(data) {
 
     createD3chart(data.myBudget);  
 });
